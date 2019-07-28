@@ -300,9 +300,10 @@ public class index extends javax.swing.JFrame implements ActionListener{
             
             this.lb_iniciales.setEnabled(false);
             this.jtxt_regla.setEnabled(false);
+            this.cbox_juegodelavida.setSelected(false);
         }
             else{
-                
+            this.cbox_otro.setSelected(false);   
             this.lb_iniciales.setEnabled(true);
             this.jtxt_regla.setEnabled(true);
             }
@@ -350,9 +351,13 @@ public class index extends javax.swing.JFrame implements ActionListener{
         clsControlador control = new clsControlador();
         if (this.cbox_juegodelavida.isSelected()) {
             control.guardarAutomata(matriz,"juegoDelaVida.txt");
+            JOptionPane.showMessageDialog(null, "Se guardo Correctamente", "juego de la vida", JOptionPane.INFORMATION_MESSAGE);
+                         
         }
          if (this.cbox_otro.isSelected()) {
             control.guardarAutomata(matriz,"von-newmann.txt");
+            JOptionPane.showMessageDialog(null, "Se guardo Correctamente", "von-nowmann", JOptionPane.INFORMATION_MESSAGE);
+                         
         }
     }//GEN-LAST:event_btn_guardarActionPerformed
     private void iniciar(int[][] matriz,int varCelulas,int varEvoluciones){

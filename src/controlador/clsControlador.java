@@ -8,7 +8,7 @@ import vista.index;
 
 public class clsControlador {
     
-    public int[][] iniciar(int parCelulas,int parRegla,int parEvoluciones,ArrayList parValoresIniciales){
+    public int[][] iniciarAtomataCelular(int parCelulas,int parRegla,int parEvoluciones,ArrayList parValoresIniciales){
     
     //40:celulas
     //30:regla
@@ -17,5 +17,8 @@ public class clsControlador {
     clsAutomataCelular objAutomataCelular = new clsAutomataCelular(parCelulas,parRegla,parEvoluciones,parValoresIniciales); 
     return objAutomataCelular.ObtenerMatriz();
     }
-    
+    public int[][] RealizarSimulacion(int[][] parMatriz){
+        clsAutomataCelular obj = new clsAutomataCelular(parMatriz);
+        return obj.Simular();
+    }
 }

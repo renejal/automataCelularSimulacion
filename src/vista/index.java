@@ -7,6 +7,8 @@ package vista;
 
 import com.sun.nio.sctp.MessageInfo;
 import controlador.clsControlador;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -14,8 +16,9 @@ import javax.swing.JOptionPane;
  *
  * @author rene
  */
-public class index extends javax.swing.JFrame {
-
+public class index extends javax.swing.JFrame implements ActionListener{
+    private int[][] matriz;
+     clsControlador atrControlador = null;
     /**
      * Creates new form index
      */
@@ -43,6 +46,8 @@ public class index extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jlb_regla = new javax.swing.JLabel();
         jtxt_regla = new javax.swing.JTextField();
+        cbox_juegovida = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
         panel_Lienzo = new javax.swing.JPanel();
 
         jInternalFrame1.setVisible(true);
@@ -60,7 +65,7 @@ public class index extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnSimular.setText("Simular");
+        btnSimular.setText("Aceptar");
         btnSimular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimularActionPerformed(evt);
@@ -87,37 +92,61 @@ public class index extends javax.swing.JFrame {
 
         jlb_regla.setText("regla");
 
+        cbox_juegovida.setText("JuegoDelaVida");
+        cbox_juegovida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbox_juegovidaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("play");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lb_celulas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lb_evoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jlb_regla)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtxt_regla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(lb_iniciales, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSimular)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_celulas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_evoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlb_regla)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtxt_regla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(lb_iniciales, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSimular))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbox_juegovida)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(12, 12, 12)
+                .addComponent(cbox_juegovida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSimular)
                     .addComponent(jLabel2)
                     .addComponent(lb_celulas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -125,8 +154,11 @@ public class index extends javax.swing.JFrame {
                     .addComponent(lb_iniciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jlb_regla)
-                    .addComponent(jtxt_regla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addComponent(jtxt_regla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimular))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panel_LienzoLayout = new javax.swing.GroupLayout(panel_Lienzo);
@@ -137,7 +169,7 @@ public class index extends javax.swing.JFrame {
         );
         panel_LienzoLayout.setVerticalGroup(
             panel_LienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 302, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,18 +193,42 @@ public class index extends javax.swing.JFrame {
     private void lb_celulasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_celulasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lb_celulasActionPerformed
-
+    private void crearMatriz(int parFila,int parColumnas){
+        matriz = new int[parFila][parColumnas];
+        for (int i = 0; i <parFila; i++) {
+            for (int j = 0; j <parColumnas; j++) {
+                matriz[i][j] = 0;
+            }
+        }
+        
+    }
     private void btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularActionPerformed
-        if (!validarCampos()){
-            this.panel_Lienzo.removeAll();
-            int varCelulas =Integer.parseInt(this.lb_celulas.getText());
-            int varEvoluciones = Integer.parseInt(this.lb_evoluciones.getText());
-            int varRegla = Integer.parseInt(this.jtxt_regla.getText());
-            ArrayList varColeccion = obtenerValoresIniciales();
-            clsControlador objControlador = new clsControlador();
-            int matriz[][] =objControlador.iniciar(varCelulas,varRegla,varEvoluciones,varColeccion);
-            this.iniciar(matriz,varCelulas,varEvoluciones);
-            this.paintAll(this.getGraphics());
+        if (this.cbox_juegovida.isSelected())
+        {
+                int k =0;
+                this.panel_Lienzo.removeAll();
+                int varCelulas =Integer.parseInt(this.lb_celulas.getText());
+                int varEvoluciones = Integer.parseInt(this.lb_evoluciones.getText());
+                this.crearMatriz(varCelulas,varEvoluciones);
+                this.iniciar(matriz, varCelulas,varEvoluciones );
+                this.paintAll(this.getGraphics());
+                    
+            
+        }
+        else
+        {
+            
+            if (!validarCampos()){
+                this.panel_Lienzo.removeAll();
+                int varCelulas =Integer.parseInt(this.lb_celulas.getText());
+                int varEvoluciones = Integer.parseInt(this.lb_evoluciones.getText());
+                int varRegla = Integer.parseInt(this.jtxt_regla.getText());
+                ArrayList varColeccion = obtenerValoresIniciales();
+                clsControlador objControl = new clsControlador();
+                int[][] auxMatriz = objControl.iniciarAtomataCelular(varCelulas,varRegla,varEvoluciones,varColeccion);
+                this.iniciar(auxMatriz,varCelulas,varEvoluciones);
+                this.paintAll(this.getGraphics());
+            }
         }
        
     }//GEN-LAST:event_btnSimularActionPerformed
@@ -202,17 +258,43 @@ public class index extends javax.swing.JFrame {
         }
         return varColeccion;
     }
+     @Override
+    public void actionPerformed(ActionEvent e) {
+        clsCuadro objBoton = (clsCuadro)e.getSource(); //obtiene el objeto el cual se  le dio click
+        objBoton.cambiarEstado();
+        matriz[objBoton.getPosX()][objBoton.getPosY()] = objBoton.getEstado();
+                
+    }
     private void lb_inicialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_inicialesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lb_inicialesActionPerformed
+
+    private void cbox_juegovidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_juegovidaActionPerformed
+       
+            this.lb_iniciales.setEnabled(false);
+            this.jtxt_regla.setEnabled(false);
+    }//GEN-LAST:event_cbox_juegovidaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        clsControlador objControlador = new clsControlador();
+        matriz = objControlador.RealizarSimulacion(matriz);
+        this.panel_Lienzo.removeAll();
+        this.iniciar(matriz, matriz[0].length,matriz.length);
+         this.paintAll(this.getGraphics());
+                
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void iniciar(int[][] matriz,int varCelulas,int varEvoluciones){
         
         this.panel_Lienzo.setLayout(new java.awt.GridLayout(varEvoluciones,varCelulas));
         for (int i = 0; i < varEvoluciones; i++) {
             for (int j = 0; j <varCelulas; j++){
                  clsCuadro cuadro = new clsCuadro();
+                 cuadro.setPosX(i);
+                 cuadro.setPosY(j);
+                 cuadro.addActionListener(this);//agreaga el evento al objeto boton: agrega metodo click
                 if(matriz[i][j]==1){
-                    cuadro.cambiarEstado(1);
+                    cuadro.cambiarEstado();
                 }
                 cuadro.setVisible(true);
                 panel_Lienzo.add(cuadro);
@@ -260,6 +342,8 @@ public class index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSimular;
+    private javax.swing.JCheckBox cbox_juegovida;
+    private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -272,4 +356,6 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JTextField lb_iniciales;
     private javax.swing.JPanel panel_Lienzo;
     // End of variables declaration//GEN-END:variables
+
+   
 }

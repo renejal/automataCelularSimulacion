@@ -10,6 +10,9 @@ public class clsAutomataCelular {
     private clsReglas atrObjRegla= null;
     private clsEstado atrObjEstado = null;
     private int atrMatriz[][] = null;
+    private int atrFilas = 0;
+    private int atrColumnas = 0;
+    
     private filetxt archivo = new filetxt(); 
     
    public clsAutomataCelular(int parNumCelula,int parRegla,int parCantidadEvoluciones, ArrayList parValoresIniciales){
@@ -19,6 +22,70 @@ public class clsAutomataCelular {
        atrCantidadEvoluciones = parCantidadEvoluciones;
        this.CrearAutomataCelular(atrObjRegla.getColReglas(),atrObjEstado.getAtrColEstado(),atrObjCelula.getColCelulas());
    }
+   public clsAutomataCelular(int [][] parMatriz){
+        this.atrMatriz = parMatriz;
+        this.atrFilas = atrMatriz.length;
+        this.atrColumnas = atrMatriz[0].length;
+   }
+   public int[][] Simular(){
+       int[][] matrizAux = new int[atrFilas][atrColumnas];
+       //logica de juego de la vida
+       for (int i = 0; i < atrMatriz.length; i++) {
+           for (int j = 0; j < atrMatriz[0].length; j++) {
+               //regla 1 si una celula esta viva entonces y continue viva debe tener dos o tres vecinas vivas
+               int numVivas = cantidadVecinasVivas(i, j);
+               if(atrMatriz[i][j]==1){
+                    if(numVivas == 2 || numVivas==3){
+                    System.out.println("vive"+"["+i+"]"+"["+j+"]");
+                    //queda viva 
+                    matrizAux[i][j]=1;
+                    }
+                    else{
+                       System.out.println("muere"+"["+i+"]"+"["+j+"]");
+                        matrizAux[i][j]=0;
+                   }
+               }else{
+                   if (numVivas == 3){
+                       System.out.println("renace"+"["+i+"]"+"["+j+"]");
+                       matrizAux[i][j]=1;
+                   }
+               }
+               
+           }
+       }
+       
+       return matrizAux;
+   }
+  private int cantidadVecinasVivas(int posX,int posY){
+         int numVivas = 0;
+        int filas = atrMatriz.length;
+        int columnas = atrMatriz[0].length;
+        if(posX-1 > 0 && posY-1 > 0)
+        {
+            if(atrMatriz[posX-1][posY-1]==1){
+                numVivas++;
+            }
+        }
+        if (posX+1 < columnas && posY-1 > 0)
+        {
+           if(atrMatriz[posX+1][posY-1]==1){
+                numVivas++;
+            }
+        }
+        if (posX-1 > 0 && posY+1 < filas)
+        {
+           if(atrMatriz[posX-1][posY+1]==1){
+                numVivas++;
+            }
+        }
+         if (posX+1 < columnas && posY+1 < filas)
+        {
+           if(atrMatriz[posX+1][posY+1]==1){
+                numVivas++;
+            }
+        }
+         return numVivas;
+    } 
    public void CrearAutomataCelular(ArrayList reglas,ArrayList estados,ArrayList parColCelulas){
         archivo.deleteFile("automata.txt");
         atrMatriz = new int[atrCantidadEvoluciones][parColCelulas.size()];
@@ -86,7 +153,7 @@ public class clsAutomataCelular {
         System.out.println();
         System.out.println();
     }
-    private ArrayList inicializar(int parTamanio){
+   private ArrayList inicializar(int parTamanio){
         ArrayList parColtemp = new ArrayList();
         for (int i = 0; i < parTamanio; i++) {
             parColtemp.add(0);

@@ -46,8 +46,10 @@ public class index extends javax.swing.JFrame implements ActionListener{
         jLabel3 = new javax.swing.JLabel();
         jlb_regla = new javax.swing.JLabel();
         jtxt_regla = new javax.swing.JTextField();
-        cbox_juegovida = new javax.swing.JCheckBox();
+        cbox_otro = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        cbox_juegodelavida = new javax.swing.JCheckBox();
+        btn_guardar = new javax.swing.JButton();
         panel_Lienzo = new javax.swing.JPanel();
 
         jInternalFrame1.setVisible(true);
@@ -92,17 +94,31 @@ public class index extends javax.swing.JFrame implements ActionListener{
 
         jlb_regla.setText("regla");
 
-        cbox_juegovida.setText("JuegoDelaVida");
-        cbox_juegovida.addActionListener(new java.awt.event.ActionListener() {
+        cbox_otro.setText("von-newmann");
+        cbox_otro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbox_juegovidaActionPerformed(evt);
+                cbox_otroActionPerformed(evt);
             }
         });
 
-        jButton1.setText("play");
+        jButton1.setText("paso");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        cbox_juegodelavida.setText("juego de la vida");
+        cbox_juegodelavida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbox_juegodelavidaActionPerformed(evt);
+            }
+        });
+
+        btn_guardar.setText("guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
             }
         });
 
@@ -113,6 +129,12 @@ public class index extends javax.swing.JFrame implements ActionListener{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(cbox_otro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbox_juegodelavida)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -130,22 +152,26 @@ public class index extends javax.swing.JFrame implements ActionListener{
                         .addGap(18, 18, 18)
                         .addComponent(lb_iniciales, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSimular))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbox_juegovida)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnSimular)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(45, 45, 45)
                 .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btn_guardar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(cbox_juegovida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(cbox_juegodelavida))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cbox_otro)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lb_celulas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,9 +182,11 @@ public class index extends javax.swing.JFrame implements ActionListener{
                     .addComponent(jlb_regla)
                     .addComponent(jtxt_regla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSimular))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btn_guardar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panel_LienzoLayout = new javax.swing.GroupLayout(panel_Lienzo);
@@ -169,7 +197,7 @@ public class index extends javax.swing.JFrame implements ActionListener{
         );
         panel_LienzoLayout.setVerticalGroup(
             panel_LienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,14 +205,15 @@ public class index extends javax.swing.JFrame implements ActionListener{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel_Lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Lienzo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_Lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel_Lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -203,7 +232,7 @@ public class index extends javax.swing.JFrame implements ActionListener{
         
     }
     private void btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularActionPerformed
-        if (this.cbox_juegovida.isSelected())
+        if (this.cbox_otro.isSelected() || this.cbox_juegodelavida.isSelected())
         {
                 int k =0;
                 this.panel_Lienzo.removeAll();
@@ -213,22 +242,19 @@ public class index extends javax.swing.JFrame implements ActionListener{
                 this.iniciar(matriz, varCelulas,varEvoluciones );
                 this.paintAll(this.getGraphics());
                     
-            
-        }
-        else
-        {
-            
-            if (!validarCampos()){
-                this.panel_Lienzo.removeAll();
-                int varCelulas =Integer.parseInt(this.lb_celulas.getText());
-                int varEvoluciones = Integer.parseInt(this.lb_evoluciones.getText());
-                int varRegla = Integer.parseInt(this.jtxt_regla.getText());
-                ArrayList varColeccion = obtenerValoresIniciales();
-                clsControlador objControl = new clsControlador();
-                int[][] auxMatriz = objControl.iniciarAtomataCelular(varCelulas,varRegla,varEvoluciones,varColeccion);
-                this.iniciar(auxMatriz,varCelulas,varEvoluciones);
-                this.paintAll(this.getGraphics());
-            }
+               
+        }else{    
+                if (!validarCampos()){
+                    this.panel_Lienzo.removeAll();
+                    int varCelulas =Integer.parseInt(this.lb_celulas.getText());
+                    int varEvoluciones = Integer.parseInt(this.lb_evoluciones.getText());
+                    int varRegla = Integer.parseInt(this.jtxt_regla.getText());
+                    ArrayList varColeccion = obtenerValoresIniciales();
+                    clsControlador objControl = new clsControlador();
+                    int[][] auxMatriz = objControl.iniciarAtomataCelular(varCelulas,varRegla,varEvoluciones,varColeccion);
+                    this.iniciar(auxMatriz,varCelulas,varEvoluciones);
+                    this.paintAll(this.getGraphics());
+                }
         }
        
     }//GEN-LAST:event_btnSimularActionPerformed
@@ -269,21 +295,66 @@ public class index extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_lb_inicialesActionPerformed
 
-    private void cbox_juegovidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_juegovidaActionPerformed
-       
+    private void cbox_otroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_otroActionPerformed
+            if (this.cbox_otro.isSelected()) {
+            
             this.lb_iniciales.setEnabled(false);
             this.jtxt_regla.setEnabled(false);
-    }//GEN-LAST:event_cbox_juegovidaActionPerformed
+        }
+            else{
+                
+            this.lb_iniciales.setEnabled(true);
+            this.jtxt_regla.setEnabled(true);
+            }
+    }//GEN-LAST:event_cbox_otroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        clsControlador objControlador = new clsControlador();
-        matriz = objControlador.RealizarSimulacion(matriz);
-        this.panel_Lienzo.removeAll();
-        this.iniciar(matriz, matriz[0].length,matriz.length);
-         this.paintAll(this.getGraphics());
+        if (this.cbox_otro.isSelected()) {
+            clsControlador objControlador = new clsControlador();
+            matriz = objControlador.RealizarSimulacion(matriz);
+            this.panel_Lienzo.removeAll();
+            this.iniciar(matriz, matriz[0].length,matriz.length);
+            this.paintAll(this.getGraphics());
+        }
+        if (this.cbox_juegodelavida.isSelected()) {
+            clsControlador objControlador = new clsControlador();
+            matriz = objControlador.RealizarSimulacionJuegoVida(matriz);
+            this.panel_Lienzo.removeAll();
+            this.iniciar(matriz, matriz[0].length,matriz.length);
+            this.paintAll(this.getGraphics());
+        }
+           
+        
+        
+        
+      
                 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbox_juegodelavidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_juegodelavidaActionPerformed
+         if (this.cbox_juegodelavida.isSelected()) {
+            
+            this.lb_iniciales.setEnabled(false);
+            this.jtxt_regla.setEnabled(false);
+        }
+            else{
+                
+            this.lb_iniciales.setEnabled(true);
+            this.jtxt_regla.setEnabled(true);
+            }
+    }//GEN-LAST:event_cbox_juegodelavidaActionPerformed
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        
+        clsControlador control = new clsControlador();
+        if (this.cbox_juegodelavida.isSelected()) {
+            control.guardarAutomata(matriz,"juegoDelaVida.txt");
+        }
+         if (this.cbox_otro.isSelected()) {
+            control.guardarAutomata(matriz,"von-newmann.txt");
+        }
+    }//GEN-LAST:event_btn_guardarActionPerformed
     private void iniciar(int[][] matriz,int varCelulas,int varEvoluciones){
         
         this.panel_Lienzo.setLayout(new java.awt.GridLayout(varEvoluciones,varCelulas));
@@ -342,7 +413,9 @@ public class index extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSimular;
-    private javax.swing.JCheckBox cbox_juegovida;
+    private javax.swing.JButton btn_guardar;
+    private javax.swing.JCheckBox cbox_juegodelavida;
+    private javax.swing.JCheckBox cbox_otro;
     private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;

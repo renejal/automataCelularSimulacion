@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import file.filetxt;
 
 public class clsAutomataCelular {
     private int atrCantidadEvoluciones = 0;
@@ -9,6 +10,7 @@ public class clsAutomataCelular {
     private clsReglas atrObjRegla= null;
     private clsEstado atrObjEstado = null;
     private int atrMatriz[][] = null;
+    private filetxt archivo = new filetxt(); 
     
    public clsAutomataCelular(int parNumCelula,int parRegla,int parCantidadEvoluciones, ArrayList parValoresIniciales){
        atrObjCelula = new clsCelula(parNumCelula,parValoresIniciales);
@@ -18,13 +20,13 @@ public class clsAutomataCelular {
        this.CrearAutomataCelular(atrObjRegla.getColReglas(),atrObjEstado.getAtrColEstado(),atrObjCelula.getColCelulas());
    }
    public void CrearAutomataCelular(ArrayList reglas,ArrayList estados,ArrayList parColCelulas){
-       // int matrizResultante[][] = new int[parColCelulas.size()][parColCelulas.size()];
+        archivo.deleteFile("automata.txt");
         atrMatriz = new int[atrCantidadEvoluciones][parColCelulas.size()];
         int posicion = 0, valAux = 0;
         Scanner scanner = new Scanner(System.in);
         ArrayList listaEvolucion = this.inicializar(parColCelulas.size());
         ArrayList listaAux = new ArrayList();
-        
+         String linea = "";
         
       
         for(int i = 0 ; i < parColCelulas.size(); i++) {
@@ -32,15 +34,17 @@ public class clsAutomataCelular {
         }
         
         for(int i = 0 ; i < atrCantidadEvoluciones ; i++) {
-            
+            linea = "";
             System.out.println();
            // atrMatriz.add(parColCelulas);
-            //solo apara imprimier
+            //agrega al archivo
             for(int j = 0 ; j < parColCelulas.size() ; j++) {
                 valAux = (Integer)parColCelulas.get(j);
                 atrMatriz[i][j]=valAux;
+                linea  =linea+" "+Integer.toString(valAux);
                 System.out.print(valAux);
             }
+            archivo.writeFile("automata.txt",linea,true);
             ///
             for(int j = 0 ; j < parColCelulas.size() ; j++) {
                 listaAux = new ArrayList();
